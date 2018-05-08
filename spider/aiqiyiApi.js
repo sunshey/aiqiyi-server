@@ -10,8 +10,8 @@ var app = new express()
 var sd = require('silly-datetime');
 
 
-app.use(express.static('public'))
-var urlencodedParser = bodyParser.urlencoded({extended:false})
+app.use(express.static('public'))//指定允许访问的静态文件路径，包括HTML代码，css样式，图片等
+var urlencodedParser = bodyParser.urlencoded({extended:false}) // 设置请求解析器
 var storage = multer.diskStorage({
 	destination:function(req,file,cb){
 		cb(null,'./public/upload')
@@ -22,7 +22,7 @@ var storage = multer.diskStorage({
 	  	cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
 	  }
 	})
-app.use(multer({storage:storage}).array('image'))
+app.use(multer({storage:storage}).array('image'))//指定文件上传的路径和上传文件重命名
 
 var connection=mysql.createConnection({
 	host : constant.host,
@@ -254,7 +254,6 @@ app.post("/update_info",urlencodedParser,function(req,res){
 			console.log('[UPDATE ERROR] -',err.message);
 			return
 		}
-
 		var querySql ='SELECT * FROM user WHERE id =?'
 		var queryParams = [params['user_id']]
 		connection.query(querySql,queryParams,function(err,results){
