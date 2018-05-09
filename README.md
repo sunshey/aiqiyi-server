@@ -24,17 +24,17 @@
 使用模块按项目分析如下：
 * **爬虫项目**
   * request  
-  request是网络请求模块，通过请求指定的url获取响应的HTML页面，用法如下：  
-```
-request(url,function(err,response,body){
-  if (err) {
-    console.log(err);
-    return
-  }
-  ...}
- ```
- response是返回页面信息包括状态，响应头，响应体等，body是响应HTML页面body数据  
- 这只是它的基本用法，详细用法可参考[官方说明](https://github.com/request/request)  
+   request是网络请求模块，通过请求指定的url获取响应的HTML页面，用法如下：  
+   ```
+   request(url,function(err,response,body){
+     if (err) {
+       console.log(err);
+       return
+     }
+     ...}
+    ```
+     response是返回页面信息包括状态，响应头，响应体等，body是响应HTML页面body数据  
+     这只是它的基本用法，详细用法可参考[官方说明](https://github.com/request/request)  
     * cheerio
   
 * **mysql**
