@@ -35,9 +35,59 @@
     ```
      response是返回页面信息包括状态，响应头，响应体等，body是响应HTML页面body数据  
      这只是它的基本用法，详细用法可参考[官方说明](https://github.com/request/request)  
-    * cheerio
-  
-* **mysql**
+    * cheerio  
+  cheerio模块用来将request请求返回的数据按照节点、属性进行解析，有点类似于Python中的xpath语法，用法如下：
+    ```
+    var $ = cheerio.load(body);
+		// console.log($('.site-piclist').find('li').length);
+		var movies=[]
+		$('.site-piclist').find('li').each(function(i,elem){
+			var movie={
+				'movie_name':"",
+				'movie_cover':"",
+				'movie_score':'',
+				'movie_actor':'主演：',
+				'movie_url':''
+			}
+			movie['movie_cover']='http:'.concat($(this).find('.site-piclist_pic').find('img').attr('src'))
+			movie['movie_name']=$(this).find('.site-piclist_info').find('p').find('a').attr("title")
+			movie['movie_score']=$(this).find('.site-piclist_info').find('.score').text()
+			movie['movie_url']=$(this).find('.site-piclist_pic').find('a').attr('href')
+
+			$(this).find('.site-piclist_info').find('.role_info').find('em').each(function(j,elem){
+				if ($(this).children().length>0) {
+					movie['movie_actor']=movie['movie_actor'].concat($(this).find('a').attr('title'))
+
+				}
+			})
+   ```
+   当然详细用法参考[说明](http://cnodejs.org/topic/5203a71844e76d216a727d2e)
+* **mysql**  
+mysql大家都很熟悉了，数据库操作，增删改查。这里也列举一下用法：
+```
+var connection = mysql.createConnection({
+	host : "localhost",
+	user : "root",
+	password : "123456",
+	database : "aiqiyi"
+});
+connection.connect();
+var sql = 'INSERT INTO freemovie(moviename,moviecover,moviescore,movieactor,movieurl) VALUES (?,?,?,?,?)'
+var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],movie['movie_actor'],movie['movie_url']];
+			connection.query(sql,sqlParam,function(err,results,fields){
+				if (err) {
+					console.log("[INSERT ERROR] -",err.message);
+					return;
+				};
+				console.log('----------------INSERT-------------------');
+				console.log('INSERT ID:',results.insertId);
+				getDetail(results.insertId,movie['movie_url'],movie['movie_actor'])
+				console.log('--------------------------------------------\n\n');
+			})
+   ...}
+ ```
+ 想更深入学习，查看[官方说明](http://www.runoob.com/nodejs/nodejs-mysql.html)
+ ##### MySQL在爬虫项目和接口项目中都用到了，因此单独拿出来分析一下
 
 * **接口项目**
 
