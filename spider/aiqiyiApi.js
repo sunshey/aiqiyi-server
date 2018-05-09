@@ -8,12 +8,26 @@ const mysql = require('mysql')
 var constant = require('./aiqiyiConstant')
 var app = new express()
 var sd = require('silly-datetime');
+var https = require('https');
+var http = require('http');
+var privateKey = fs.readFileSync('private.pem', 'utf8');
+var certificate = fs.readFileSync('file.crt', 'utf8');
+var credentials = {
+	key:privateKey,
+	cert:certificate
+}
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials,app);
+const PORT= 8080
+const SSLPORT  =8081
 
 
 app.use(express.static('public'))//指定允许访问的静态文件路径，包括HTML代码，css样式，图片等
 var urlencodedParser = bodyParser.urlencoded({extended:false}) // 设置请求解析器
 var storage = multer.diskStorage({
 	destination:function(req,file,cb){
+		//设置上传后文件路径，uploads文件夹会自动创建。
 		cb(null,'./public/upload')
 	},
 	  // 给上传文件重命名，获取添加后缀名
@@ -331,9 +345,24 @@ app.post('/login',urlencodedParser,function(req,res){
 })
 
 
-var server=app.listen(8080,function(){
-	var host = server.address().address
-	var port = server.address().port
+// var server=app.listen(8080,function(){
+// 	var host = server.address().address
+// 	var port = server.address().port
+// 	console.log("应用实例，访问地址为http://%s:%s" ,host,port);
+// })
+
+var hs=httpServer.listen(PORT,function(){
+	// console.log('HTTP Server is running on:http://localhost:%s',PORT);
+	var host = hs.address().address
+	var port = hs.address().port
+	console.log("应用实例，访问地址为http://%s:%s" ,host,port);
+
+})
+
+var hss=httpsServer.listen(SSLPORT,function(){
+	// console.log('HTTP Server is running on:https://localhost:%s',SSLPORT);
+	var host = hss.address().address
+	var port = hss.address().port
 	console.log("应用实例，访问地址为http://%s:%s" ,host,port);
 })
 
