@@ -216,5 +216,5 @@ var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_da
 * delete from user;  --删除user表中所有数据，保留行标
 * TRUNCATE TABLE user;  --清空user表所有数据，不保留行标
 * ALTER TABLE test CHANGE NAME newname VARCHAR(50);  --将test表中name字段改为newname,并使用指定的类型
-* DELETE FROM test;  --删除test表
+* DROP TABLE test;  --删除test表
 
