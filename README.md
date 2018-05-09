@@ -180,8 +180,8 @@ REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求�
 
 注意事项
 ---
-1. **使用npm安装模块时，尽量不要全局安装，要单独为每个项目安装模块，例如：npm install express --save**
-2. **在项目中使用的常量可以单独写在一个js文件中，比如数据库的配置文件，使用module.exports导入，就像这样**
+1. ###### 使用npm安装模块时，尽量不要全局安装，要单独为每个项目安装模块，例如：npm install express --save
+2. ###### 在项目中使用的常量可以单独写在一个js文件中，比如数据库的配置文件，使用module.exports导入，就像这样
 ```
 module.exports = {
 	"host":"localhost",
@@ -198,8 +198,13 @@ var connection=mysql.createConnection({
 	database : constant.database
 })
 ```
-3. **项目中要是用到了https协议，需要通过openssl生成: 私钥、CSR证书签名、证书文件，同时还要选择一个CA机构来认证证书，网上推荐的是【又拍的】[Let's Encrypt DV SSL 单域名证书](https://console.upyun.com/toolbox/ssl/),还要有自己的域名**
-4. **项目中用的MySQL数据库，数据库名是aiqiyi,有四张表moviefree(爬取的爱奇艺电影数据)、moviedetail(电影详情页)、user(用户信息)、forum(论坛信息)。接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在可视化工具SQLyog测试一下，没有问题在写在接口里，总结一下常用的MySQL命令：**
+3. ###### 项目中要是用到了https协议，需要通过openssl生成: 私钥、CSR证书签名、证书文件，同时还要选择一个CA机构来认证证书，网上推荐的是【又拍的】[Let's Encrypt DV SSL 单域名证书](https://console.upyun.com/toolbox/ssl/),还要有自己的域名
+4. ###### 开发中比较难的sql语句就是多表查询，项目中使用如下：
+```
+var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_date`,user.`avtor`,user.`nickname`,user.`phone`,user.`sv`,user.`username` FROM forum   JOIN USER ON (forum.`user_id`= user.`id`)  '
+````
+###### 接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在数据可可视化工具SQLyog测试一下，没有问题在写在接口里
+5. ###### 项目中用的MySQL数据库，数据库名是aiqiyi,有四张表moviefree(爬取的爱奇艺电影数据)、moviedetail(电影详情页)、user(用户信息)、forum(论坛信息)。总结一下常用的MySQL命令：  
 * show databases;  --显示所有的数据库
 * use aiqiyi;  --使用数据库中名为aiqiyi的数据库
 * show tables;   --显示aiqiyi中所有的表
