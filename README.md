@@ -140,12 +140,43 @@ REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求�
 			}
 	```
 	具体用法参考[说明](http://www.runoob.com/nodejs/nodejs-fs.html)
-	* multer
-	* util
-	* mysql
-	* silly-datetime
+	* multer  
+	处理文件上传的中间件模块，用法在express模块已展示，详细用法参考[说明](http://cnodejs.org/topic/564f32631986c7df7e92b0db)
+	* util  
+	util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心JavaScript 的功能 过于精简的不足。用法参考[说明](http://www.runoob.com/nodejs/nodejs-util.html)
+	* mysql  
+	* silly-datetime  
+将时间按指定的格式显示、存储，用法:sd.format(new Date(), 'YYYY-MM-DD HH:mm'),具体用法参考[说明](https://www.npmjs.com/package/silly-datetime)
 	* http
-	* https
+	* https  
+	http和https这两个模块用来指定请求协议，创建服务器等操作，项目中主要用来做https请求接口，用法如下：
+	```
+	var privateKey = fs.readFileSync('private.pem', 'utf8');
+	var certificate = fs.readFileSync('file.crt', 'utf8');
+	var credentials = {
+		key:privateKey,
+		cert:certificate
+	}
+
+	var httpServer = http.createServer(app);
+	var httpsServer = https.createServer(credentials,app);
+	var hs=httpServer.listen(PORT,function(){
+		// console.log('HTTP Server is running on:http://localhost:%s',PORT);
+		var host = hs.address().address
+		var port = hs.address().port
+		console.log("应用实例，访问地址为http://%s:%s" ,host,port);
+
+	})
+
+	var hss=httpsServer.listen(SSLPORT,function(){
+		// console.log('HTTP Server is running on:https://localhost:%s',SSLPORT);
+		var host = hss.address().address
+		var port = hss.address().port
+		console.log("应用实例，访问地址为http://%s:%s" ,host,port);
+	})
+	//代码中的private.pem和file.crt是通过openssl工具生成的签名key和认证证书
+	```
+	
 
 注意事项
 ---
