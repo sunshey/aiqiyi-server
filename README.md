@@ -91,7 +91,7 @@ var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],mov
 
 * **接口项目**  
 REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
-	* express
+	* express  
 	express模块是开发接口的核心模块，它负责处理路由选择、请求方式、参数解析、响应数据等等，可以说这里所有的模块都为这个模块服务，因此要想写好接口，必须要学好这个模块，它的用法如下：
 	```
 	app.use(express.static('public'))//指定允许访问的静态文件路径，包括HTML代码，css样式，图片等
