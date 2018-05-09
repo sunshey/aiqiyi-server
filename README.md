@@ -203,7 +203,7 @@ var connection=mysql.createConnection({
 ```
 var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_date`,user.`avtor`,user.`nickname`,user.`phone`,user.`sv`,user.`username` FROM forum   JOIN USER ON (forum.`user_id`= user.`id`)  '
 ````
-###### 接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在数据可可视化工具SQLyog测试一下，没有问题在写在接口里
+###### 接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在数据库可视化工具SQLyog测试一下，没有问题在写在接口里
 5. ###### 项目中用的MySQL数据库，数据库名是aiqiyi,有四张表moviefree(爬取的爱奇艺电影数据)、moviedetail(电影详情页)、user(用户信息)、forum(论坛信息)。总结一下常用的MySQL命令：  
 * show databases;  --显示所有的数据库
 * use aiqiyi;  --使用数据库中名为aiqiyi的数据库
