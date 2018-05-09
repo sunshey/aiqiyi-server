@@ -123,10 +123,23 @@ REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求�
 		}
 	...}
 	```
-	
+	详细用法参考[说明](http://www.runoob.com/nodejs/nodejs-express-framework.html)  
 	* path
+	path模块主要是操作文件路径，项目中没有用到，用法参考[说明](http://nodejs.cn/api/path.html)
 	* body-parser
+	这个模块用来解析请求的数据，用法在上面已经列出，具体参考[说明](https://blog.csdn.net/bystarlight/article/details/72639340)
 	* fs
+	文件读写模块，用法如下：
+	```
+	fs.readFile(req.files[0].path, function(err,data){
+			if (err) {
+				console.log(err);
+			}else{
+				var data ='upload/'+ req.files[0].filename
+			...}
+			}
+	```
+	具体用法参考[说明](http://www.runoob.com/nodejs/nodejs-fs.html)
 	* multer
 	* util
 	* mysql
