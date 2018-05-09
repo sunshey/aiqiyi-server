@@ -87,9 +87,52 @@ var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],mov
    ...}
  ```
  想更深入学习，查看[官方说明](http://www.runoob.com/nodejs/nodejs-mysql.html)
- ##### MySQL在爬虫项目和接口项目中都用到了，因此单独拿出来分析一下
+ ##### 特别说明：MySQL在爬虫项目和接口项目中都用到了，因此单独拿出来分析一下
 
-* **接口项目**
+* **接口项目**  
+REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
+	* express
+	express模块是开发接口的核心模块，它负责处理路由选择、请求方式、参数解析、响应数据等等，可以说这里所有的模块都为这个模块服务，因此要想写好接口，必须要学好这个模块，它的用法如下：
+	```
+	app.use(express.static('public'))//指定允许访问的静态文件路径，包括HTML代码，css样式，图片等
+	var urlencodedParser = bodyParser.urlencoded({extended:false}) // 设置请求解析器
+	var storage = multer.diskStorage({
+	destination:function(req,file,cb){
+		//设置上传后文件路径，uploads文件夹会自动创建。
+		cb(null,'./public/upload')
+	},
+	  // 给上传文件重命名，获取添加后缀名
+	  filename: function (req, file, cb) {
+	  	var fileFormat = (file.originalname).split(".");
+	  	cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
+	  }
+	})
+	app.use(multer({storage:storage}).array('image'))//指定文件上传的路径和上传文件重命名
+	//获取列表
+	app.get('/movielist/:page/:limit',function(req,res){
+
+		console.log("get");
+		var page =req.params.page
+		var limit = req.params.limit
+		try{
+			page = Number(page);
+			limit= Number(limit)
+		}catch (err){
+			res.writeHead(404,{"Content-Type":'text/html;charset=utf-8'});
+			res.send('页码必须为正整数')
+		}
+	...}
+	```
+	
+	* path
+	* body-parser
+	* fs
+	* multer
+	* util
+	* mysql
+	* silly-datetime
+	* http
+	* https
 
 注意事项
 ---
