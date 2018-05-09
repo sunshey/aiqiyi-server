@@ -33,7 +33,7 @@
      }
      ...}
     ```
-     response是返回页面信息包括状态，响应头，响应体等，body是响应HTML页面body数据  
+     response返回页面信息包括状态，响应头，响应体等，body是响应HTML页面body数据  
      这只是它的基本用法，详细用法可参考[官方说明](https://github.com/request/request)  
     * cheerio  
   cheerio模块用来将request请求返回的数据按照节点、属性进行解析，有点类似于Python中的xpath语法，用法如下：
