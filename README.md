@@ -1,5 +1,7 @@
 * [项目介绍](#项目介绍)
-
+* [前言](#前言)
+* [技术分析](#使用技术分析)
+* [注意事项](#注意事项)
 
 
 
@@ -14,4 +16,6 @@
 由于这个项目是使用node开发的，如果您的电脑没有安装node，[点此下载](http://nodejs.cn/download/ "node下载地址")，此外必要的node知识也是必不可少的，你可以通过这些网站来学习[node中文网](http://nodejs.cn/api/)、[菜鸟教程](https://www.runoob.com/nodejs/nodejs-install-setup.html)，还有其他学习的网站可以自己去寻找:smiley:
 
 使用技术分析
+---
+注意事项
 ---
