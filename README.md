@@ -180,3 +180,36 @@ REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求�
 
 注意事项
 ---
+1. **使用npm安装模块时，尽量不要全局安装，要单独为每个项目安装模块，例如：npm install express --save**
+2. **在项目中使用的常量可以单独写在一个js文件中，比如数据库的配置文件，使用module.exports导入，就像这样**
+```
+module.exports = {
+	"host":"localhost",
+	"user":"root",
+	"password":"123456",
+	"database":"aiqiyi",
+	 test:test
+};
+var constant = require('./aiqiyiConstant')
+var connection=mysql.createConnection({
+	host : constant.host,
+	user : constant.user,
+	password : constant.password,
+	database : constant.database
+})
+```
+3. **项目中要是用到了https协议，需要通过openssl生成: 私钥、CSR证书签名、证书文件，同时还要选择一个CA机构来认证证书，网上推荐的是【又拍的】[Let's Encrypt DV SSL 单域名证书](https://console.upyun.com/toolbox/ssl/),还要有自己的域名**
+4. **项目中用的MySQL数据库，数据库名是aiqiyi,有四张表moviefree(爬取的爱奇艺电影数据)、moviedetail(电影详情页)、user(用户信息)、forum(论坛信息)。接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在可视化工具SQLyog测试一下，没有问题在写在接口里，总结一下常用的MySQL命令：**
+* show databases;  --显示所有的数据库
+* use aiqiyi;  --使用数据库中名为aiqiyi的数据库
+* show tables;   --显示aiqiyi中所有的表
+* show columns from user; --显示user表中所有字段
+* select * from user;  --显示user表中所有数据
+* insert into user(username,password,phone) values ("","","");  --向user表中添加数据
+* update user set username ="aa" where id =1;  --更新user表中id为1的数据
+* delete from user where id=1;  --删除user表中id为1的数据
+* delete from user;  --删除user表中所有数据，保留行标
+* TRUNCATE TABLE user;  --清空user表所有数据，不保留行标
+* ALTER TABLE test CHANGE NAME newname VARCHAR(50);  --将test表中name字段改为newname,并使用指定的类型
+* DELETE FROM test;  --删除test表
+
