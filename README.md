@@ -208,7 +208,7 @@ var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_da
 * show databases;  --显示所有的数据库
 * use aiqiyi;  --使用数据库中名为aiqiyi的数据库
 * show tables;   --显示aiqiyi中所有的表
-* show columns from user; --显示user表中所有字段
+* show columns from user; | desc user; --显示user表中所有字段
 * select * from user;  --显示user表中所有数据
 * insert into user(username,password,phone) values ("","","");  --向user表中添加数据
 * update user set username ="aa" where id =1;  --更新user表中id为1的数据
