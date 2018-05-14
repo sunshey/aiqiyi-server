@@ -90,7 +90,7 @@ var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],mov
  ##### 特别说明：MySQL在爬虫项目和接口项目中都用到了，因此单独拿出来分析一下
 
 * **接口项目**  
-REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
+REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网络请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
 	* express  
 	express模块是开发接口的核心模块，它负责处理路由选择、请求方式、参数解析、响应数据等等，可以说这里所有的模块都为这个模块服务，因此要想写好接口，必须要学好这个模块，它的用法如下：
 	```
