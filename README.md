@@ -90,7 +90,7 @@ var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],mov
  ##### 特别说明：MySQL在爬虫项目和接口项目中都用到了，因此单独拿出来分析一下
 
 * **接口项目**  
-REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
+REST是Roy Thomas Fielding博士在2000年博士论文中提出的网络请求规范，它简化了网络请求接口，由此受到了越来越多web程序员的青睐，因此这次项目中也采用了restful风格  
 	* express  
 	express模块是开发接口的核心模块，它负责处理路由选择、请求方式、参数解析、响应数据等等，可以说这里所有的模块都为这个模块服务，因此要想写好接口，必须要学好这个模块，它的用法如下：
 	```
@@ -203,12 +203,12 @@ var connection=mysql.createConnection({
 ```
 var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_date`,user.`avtor`,user.`nickname`,user.`phone`,user.`sv`,user.`username` FROM forum   JOIN USER ON (forum.`user_id`= user.`id`)  '
 ````
-###### 接口开发说白了就是数据库的增删改查，因此sql语句要好好学下，可以先在数据库可视化工具SQLyog测试一下，没有问题在写在接口里
+###### 接口开发说白了就是数据库的增删改查，因此sql语句一定要会，如果不确定sql语句写的对不对，可以先在数据库可视化工具SQLyog测试，没有问题在写在接口里
 5. ###### 项目中用的MySQL数据库，数据库名是aiqiyi,有四张表moviefree(爬取的爱奇艺电影数据)、moviedetail(电影详情页)、user(用户信息)、forum(论坛信息)。总结一下常用的MySQL命令：  
 * show databases;  --显示所有的数据库
 * use aiqiyi;  --使用数据库中名为aiqiyi的数据库
 * show tables;   --显示aiqiyi中所有的表
-* show columns from user; --显示user表中所有字段
+* show columns from user; | desc user; --显示user表中所有字段
 * select * from user;  --显示user表中所有数据
 * insert into user(username,password,phone) values ("","","");  --向user表中添加数据
 * update user set username ="aa" where id =1;  --更新user表中id为1的数据
