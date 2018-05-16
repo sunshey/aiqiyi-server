@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
-var sql = 'INSERT INTO freemovie(moviename,moviecover,moviescore,movieactor,movieurl) VALUES (?,?,?,?,?)'
+var sql = 'INSERT INTO freemovie(moviename,moviecover,moviescore,movieactor,movieurl,type) VALUES (?,?,?,?,?,?)'
 
 var getNewsList = function(url,done){
 	request(url,function(err,response,body){
@@ -45,7 +45,7 @@ var getNewsList = function(url,done){
 
 				}
 			})
-			var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],movie['movie_actor'],movie['movie_url']];
+			var sqlParam =[movie['movie_name'],movie['movie_cover'],movie['movie_score'],movie['movie_actor'],movie['movie_url'],"16"];
 			connection.query(sql,sqlParam,function(err,results,fields){
 				if (err) {
 					console.log("[INSERT ERROR] -",err.message);

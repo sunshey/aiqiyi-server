@@ -45,14 +45,15 @@ var connection=mysql.createConnection({
 	database : constant.database
 })
 connection.connect();
-var querySql = 'SELECT * FROM freemovie limit ?,? '
+var querySql = 'SELECT * FROM freemovie WHERE type=? limit ?,? '
 
 //获取列表
-app.get('/movielist/:page/:limit',function(req,res){
+app.get('/movielist/:type/:page/:limit',function(req,res){
 
 	console.log("get");
 	var page =req.params.page
 	var limit = req.params.limit
+	var type = req.params.type
 	try{
 		page = Number(page);
 		limit= Number(limit)
@@ -60,7 +61,7 @@ app.get('/movielist/:page/:limit',function(req,res){
 		res.writeHead(404,{"Content-Type":'text/html;charset=utf-8'});
 		res.send('页码必须为正整数')
 	}
-	var queryParams = [(page-1)*limit,limit];
+	var queryParams = [type,(page-1)*limit,limit];
 	connection.query(querySql,queryParams,function(err,results){
 		if (err) {
 			console.log("[SELECT ERROR] -",error.message);
@@ -81,7 +82,8 @@ app.get('/movielist/:page/:limit',function(req,res){
 app.post('/movielist',urlencodedParser,function(req,res){
 	var params ={
 		"page":req.body.page,
-		"limit":req.body.limit
+		"limit":req.body.limit,
+		"type":req.body.type
 	}
 	console.log(params);
 
@@ -92,7 +94,7 @@ app.post('/movielist',urlencodedParser,function(req,res){
 		res.writeHead(404,{"Content-Type":'text/html;charset=utf-8'});
 		res.send('页码必须为正整数')
 	}
-	var queryParams = [(page-1)*limit,limit];
+	var queryParams = [params['type'],(page-1)*limit,limit];
 	connection.query(querySql,queryParams,function(err,results){
 		if (err) {
 			console.log("[SELECT ERROR] -",err.message);
