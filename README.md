@@ -217,5 +217,6 @@ var querySql = 'SELECT forum.`user_id`,forum.`images`,forum.`info`,forum.`pub_da
 * TRUNCATE TABLE user;  --清空user表所有数据，不保留行标
 * ALTER TABLE test CHANGE NAME newname VARCHAR(50);  --将test表中name字段改为newname,并使用指定的类型
 * DROP TABLE test;  --删除test表
+* ALTER TABLE dishes MODIFY COLUMN id VARCHAR(10); --修改dishes表中id类型
 * SELECT * FROM dishes GROUP BY cover HAVING COUNT(cover) > 1;  --从dishes表中查询重复数据
 * DELETE FROM dishes WHERE id IN (SELECT id FROM (SELECT id FROM dishes WHERE cover IN (SELECT cover FROM dishes GROUP BY cover HAVING COUNT(cover)>1)  AND id NOT IN(SELECT MIN(id) FROM dishes GROUP BY cover HAVING COUNT(cover)>1)) AS tmpresult);  --从dishes表中删除重复数据  
